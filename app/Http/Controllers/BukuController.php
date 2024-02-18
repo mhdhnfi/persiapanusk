@@ -7,6 +7,7 @@ use App\Http\Requests\StoreBukuRequest;
 use App\Http\Requests\UpdateBukuRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Buku;
+use App\Models\Kategori;
 
 class BukuController extends Controller
 {
@@ -17,7 +18,9 @@ class BukuController extends Controller
     {   
         return view('main.buku', [
             'title' => 'Buku',
-            'data' => Buku::all()
+            'data' => Buku::with('kategori')->get(),
+            'select' => Kategori::all()
+            
         ]);
     }
 
@@ -40,6 +43,7 @@ class BukuController extends Controller
             'judul'     => 'required|max:30',
             'pengarang' => 'required',
             'penerbit'  => 'required',
+            'kategori_id'  => 'required',
             'stock'     => 'required|max:100',
         ]);
         

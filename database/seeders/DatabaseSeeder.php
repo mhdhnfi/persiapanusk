@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Napi',
             'email' => 'napi@gmail.com',
             'password'=> 'napi',
-            'role' => 'pustakawan'
+            'role' => 'admin'
         ]);
     }
 }

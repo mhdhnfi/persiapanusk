@@ -29,8 +29,8 @@
                                         <th class="text-center">Judul</th>
                                         <th class="text-center">Pengarang</th>
                                         <th class="text-center">Penerbit</th>
+                                        <th class="text-center">Kategori</th>
                                         <th class="text-center">Stock</th>
-                                        <th class="text-center" width="190px">Tanggal Pembuatan</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -42,8 +42,8 @@
                                             <td>{{ $buku->judul }}</td>
                                             <td>{{ $buku->pengarang }}</td>
                                             <td>{{ $buku->penerbit }}</td>
+                                            <td>{{ $buku->kategori->nama }}</td>
                                             <td>{{ $buku->stock }}</td>
-                                            <td>{{ $buku->created_at->format('d M Y') }}</td>
                                             <td>
                                                 <a href="{{ route('buku.show', $buku->judul) }}"
                                                     class="btn btn-primary btn-icon-split">
@@ -116,6 +116,18 @@
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col">
+                                                                    <div class="input-group mb-3">
+                                                                        <label>Kategori</label>
+                                                                        @foreach ($select as $kategori)
+                                                                            <option value="{{ $kategori->id }}">
+                                                                                {{ $kategori->nama }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col">
                                                                     <label>Stock</label>
                                                                     <div class="input-group mb-3">
                                                                         <input type="number" min="1" max="100"
@@ -179,6 +191,20 @@
                                             <div class="input-group mb-3">
                                                 <input type="text" class="form-control"
                                                     placeholder="Example: Gramedia" autocomplete="off" name="penerbit">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <label>Kategori</label>
+                                            <div class="input-group mb-3">
+                                                <select name="kategori_id" class="form-control"
+                                                    id="exampleFormControlSelect1">
+                                                    @foreach ($select as $kategori)
+                                                        <option value="{{ $kategori->id }}"> {{ $kategori->nama }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                     </div>

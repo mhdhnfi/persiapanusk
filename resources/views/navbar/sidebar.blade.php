@@ -15,11 +15,6 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
-    <li class="nav-item {{ Request::is('user') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ url('/dashboard') }}">
-            <i class="fas fa-fw fa-user"></i>
-            <span>User Management</span></a>
-    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -30,19 +25,30 @@
     </div>
 
 
+    @auth
+        <!-- Nav Item -->
+        @if (auth()->user()->role == "admin")
+            <li class="nav-item {{ Request::is('user') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('/dashboard') }}">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>User Management</span>
+                </a>
+            </li>
 
-    <!-- Nav Item -->
-    <li class="nav-item {{ Request::is('buku*') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ url('/buku') }}">
-            <i class="fas fa-fw fa-book"></i>
-            <span>Buku</span></a>
-    </li>
+            <li class="nav-item {{ Request::is('buku*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('/buku') }}">
+                    <i class="fas fa-fw fa-book"></i>
+                    <span>Buku</span></a>
+            </li>
 
-    <li class="nav-item {{ Request::is('kategori*') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ url('/kategori') }}">
-            <i class="far fa-fw fa-bookmark"></i>
-            <span>Kategori</span></a>
-    </li>
+            <li class="nav-item {{ Request::is('kategori*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('/kategori') }}">
+                    <i class="far fa-fw fa-bookmark"></i>
+                    <span>Kategori</span></a>
+            </li>
+        @endif
+    @endauth
+
 
     <li class="nav-item {{ Request::is('peminjaman*') ? 'active' : '' }}">
         <a class="nav-link collapsed" href="{{ url('/peminjaman') }}" data-toggle="" data-target="#collapseTwo"

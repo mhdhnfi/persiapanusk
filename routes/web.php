@@ -34,14 +34,22 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::resource('buku', BukuController::class);
-    Route::resource('kategori', KategoriController::class);
     Route::resource('dashboard', DashboardController::class);
-    Route::resource('user', UserController::class);
 });
 
 Route::middleware(['auth', 'role:pustakawan,admin'])->group(function () {
+    
     Route::get('pustakawan', function () {
         return view('pustakawan');
     });
+
+        Route::middleware(['auth', 'role:admin'])->group(function () {
+            Route::get('admin', function () {
+                return view('admin');
+            });
+
+            Route::resource('buku', BukuController::class);
+            Route::resource('kategori', KategoriController::class);
+            Route::resource('user', UserController::class);
+        });
 });

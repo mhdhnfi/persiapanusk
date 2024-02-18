@@ -33,14 +33,11 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'judul'     => 'required|max:30',
-            'pengarang' => 'required',
-            'penerbit'  => 'required',
-            'stock'     => 'required|max:100',
+            'nama'     => 'required|max:30',
         ]);
         
     
-        Buku::create($validated);
+        Kategori::create($validated);
         return redirect()->back();
     }
 
@@ -65,7 +62,7 @@ class KategoriController extends Controller
      */
     public function update(Request $request, Kategori $kategori)
     {
-        $buku->update($request->all());
+        $kategori->update($request->all());
         return redirect()->back();
     }
 
@@ -74,7 +71,7 @@ class KategoriController extends Controller
      */
     public function destroy(Kategori $kategori)
     {
-        $buku->delete();
+        $kategori->delete();
         return redirect()->back();
     }
 }
