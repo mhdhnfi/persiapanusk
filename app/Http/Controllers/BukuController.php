@@ -15,6 +15,7 @@ class BukuController extends Controller
     public function index(Buku $buku)
     {
         return view('main.buku', [
+            'title' => 'Buku',
             'data' => Buku::all()
         ]);
     }

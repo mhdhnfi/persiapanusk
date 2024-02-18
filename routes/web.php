@@ -1,7 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BukuController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Hash;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,11 +16,26 @@ use App\Http\Controllers\BukuController;
 |
 */
 
-Route::get('/', function () {
-    return view('main.dashboard');
+
+
+
+
+
+
+Route::middleware(['guest'])->group(function () {
+    
+    Route::get('/', [AuthController::class, 'login'])->name('login');
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'authenticate'])->name('login.validasi');   
 });
 
-
-
-Route::resource('buku', BukuController::class);
-
+Route::middleware(['auth'])->group(function () {
+    
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/dashboard', function () {
+        return view('main.dashboard');
+    });
+    
+    Route::resource('buku', BukuController::class);
+    Route::resource('kategori', KategoriController::class);
+});
