@@ -37,4 +37,11 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('buku', BukuController::class);
     Route::resource('kategori', KategoriController::class);
     Route::resource('dashboard', DashboardController::class);
+    Route::resource('user', UserController::class);
+});
+
+Route::middleware(['auth', 'role:pustakawan,admin'])->group(function () {
+    Route::get('pustakawan', function () {
+        return view('pustakawan');
+    });
 });

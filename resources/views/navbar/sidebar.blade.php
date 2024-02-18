@@ -15,6 +15,11 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
+    <li class="nav-item {{ Request::is('user') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ url('/dashboard') }}">
+            <i class="fas fa-fw fa-user"></i>
+            <span>User Management</span></a>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -26,22 +31,28 @@
 
 
 
-    <!-- Nav Item - Buku -->
+    <!-- Nav Item -->
     <li class="nav-item {{ Request::is('buku*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ url('/buku') }}">
             <i class="fas fa-fw fa-book"></i>
             <span>Buku</span></a>
     </li>
 
-    <!-- Nav Item - Pinjam Collapse Menu -->
+    <li class="nav-item {{ Request::is('kategori*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ url('/kategori') }}">
+            <i class="far fa-fw fa-bookmark"></i>
+            <span>Kategori</span></a>
+    </li>
 
     <li class="nav-item {{ Request::is('peminjaman*') ? 'active' : '' }}">
         <a class="nav-link collapsed" href="{{ url('/peminjaman') }}" data-toggle="" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-hands-helping"></i>
+            <i class="fas fa-fw fa-hands-helping"></i>
             <span>Pinjam Buku</span>
         </a>
     </li>
+
+
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

@@ -7,7 +7,7 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+                    <h1 class="h3 mb-2 text-gray-800">List Buku</h1>
                 </div>
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
@@ -30,7 +30,7 @@
                                         <th class="text-center">Pengarang</th>
                                         <th class="text-center">Penerbit</th>
                                         <th class="text-center">Stock</th>
-                                        <th class="text-center">Tanggal Pembuatan</th>
+                                        <th class="text-center" width="190px">Tanggal Pembuatan</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -56,7 +56,7 @@
                                                 </a>
                                                 {{-- tombol hapus/delete --}}
                                                 <a href="" class="btn btn-warning btn-icon-split">
-                                                    <form action="{{ route('buku.destroy', $buku->id) }}" method="POST">
+                                                    <form action="{{ route('buku.destroy', $buku) }}" method="POST">
                                                         @method('delete')
                                                         @csrf
                                                         <button type="submit" class="btn btn-danger btn-icon-split">

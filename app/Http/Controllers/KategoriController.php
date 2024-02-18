@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kategori;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class KategoriController extends Controller
@@ -13,7 +14,8 @@ class KategoriController extends Controller
     public function index()
     {
         return view('main.kategori', [
-            'title' => 'Kategori'
+            'title' => 'Kategori',
+            'data' => Kategori::all()
         ]);
     }
 
@@ -30,7 +32,16 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'judul'     => 'required|max:30',
+            'pengarang' => 'required',
+            'penerbit'  => 'required',
+            'stock'     => 'required|max:100',
+        ]);
+        
+    
+        Buku::create($validated);
+        return redirect()->back();
     }
 
     /**
@@ -54,7 +65,8 @@ class KategoriController extends Controller
      */
     public function update(Request $request, Kategori $kategori)
     {
-        //
+        $buku->update($request->all());
+        return redirect()->back();
     }
 
     /**
@@ -62,6 +74,7 @@ class KategoriController extends Controller
      */
     public function destroy(Kategori $kategori)
     {
-        //
+        $buku->delete();
+        return redirect()->back();
     }
 }

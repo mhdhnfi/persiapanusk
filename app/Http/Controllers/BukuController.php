@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreBukuRequest;
 use App\Http\Requests\UpdateBukuRequest;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Buku;
 
 class BukuController extends Controller
@@ -13,7 +14,7 @@ class BukuController extends Controller
      * Display a listing of the resource.
      */
     public function index(Buku $buku)
-    {
+    {   
         return view('main.buku', [
             'title' => 'Buku',
             'data' => Buku::all()
