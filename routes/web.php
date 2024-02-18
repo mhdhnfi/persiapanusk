@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\BukuController;
-use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\AuthController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BukuController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Hash;
+use App\Http\Controllers\KategoriController;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,10 +34,7 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('/dashboard', function () {
-        return view('main.dashboard');
-    });
-    
     Route::resource('buku', BukuController::class);
     Route::resource('kategori', KategoriController::class);
+    Route::resource('dashboard', DashboardController::class);
 });

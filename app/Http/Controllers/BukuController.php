@@ -51,7 +51,7 @@ class BukuController extends Controller
      */
     public function show(Buku $buku)
     {
-        //
+        return view('main.buku-view', ['buku' => $buku]);
     }
 
     /**
